@@ -1,0 +1,3 @@
+include ':PreferenceNotifier'
+include ':app'
+rootProject.name = "Preference Notifier Application"
