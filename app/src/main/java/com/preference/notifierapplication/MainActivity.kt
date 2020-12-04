@@ -1,72 +1,52 @@
 package com.preference.notifierapplication
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.TextView
 import com.preference.preferencenotifier.baseClasses.PrefNotifierBase
 
 class MainActivity : PrefNotifierBase() {
+
+    private var container1:FrameLayout? = null
+    private var container2:FrameLayout? = null
+    private var activityTitle: TextView? = null
+    private var prefButton: Button? = null
+    private var counter:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testValue = notifier.getString("test")
-        val testValue12 = notifier.getString("test12")
+        container1 = findViewById(R.id.container1)
+        container2 = findViewById(R.id.container2)
+        activityTitle = findViewById(R.id.activity_title)
+        prefButton = findViewById(R.id.pref_update_button)
 
-        Log.i("TAG","Value test: ${testValue}")
-        Log.i("TAG","Value test 12: ${testValue12}")
+        container1?.apply {
+            val fragmentContent = DemoFragment()
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.add(this.id,fragmentContent)
+            transaction.commit()
+        }
 
-//        subscribe()
+        container2?.apply {
+            val fragmentContent = DemoFragment()
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.add(this.id,fragmentContent)
+            transaction.commit()
+        }
 
-//        val sharedPreferences: SharedPreferences = this.getSharedPreferences("testPreference", Context.MODE_PRIVATE)
-//
-//        sharedPreferences.edit().putString("test12","value1234").apply()
-//        sharedPreferences.edit().putInt("testInt",1).apply()
-//        init().migrate(sharedPreferences)
-
-
-//        val setSets:Any = HashSet<String>()
-
-//        setSets.add("value1")
-//        setSets.add("value2")
-//        setSets.add("value3")
-
-//        if ( setSets is HashSet<*>)
-//        {
-//            Log.i("TAG","Set sets: ${setSets as HashSet<String>}")
-//        } else {
-//            Log.i("TAG","Is not hash set string")
-//        }
-
-
-//        sharedPreferences.edit().putStringSet("test_set",setSets)
-
-
-
-
-
-
-
-//        val keys = sharedPreferences.all
-//
-//        keys.forEach { pref ->
-//            Log.i("TAG","Key: ${pref.key}, value: ${pref.value}")
-//        }
-
-
-//        Log.i("TAG","onCreate main activity")
-
-//        notifier.setValue("test12","value12")
-
-//        notifier.setValue("test","Test value")
-//
-//        val value = notifier.getString("test")
-//        Log.i("TAG","value stored: ${value}")
-
+        prefButton?.setOnClickListener {
+            counter++
+            notifier.setValue("test","value ${counter}")
+        }
     }
 
     override fun onPreferenceChanged(key: String, value: Any?) {
         super.onPreferenceChanged(key, value)
-        Log.i("TAG","Updated pref, key: ${key} with value: ${value}")
+        activityTitle?.text = "Activity key: ${key} value: ${value}"
     }
 }
