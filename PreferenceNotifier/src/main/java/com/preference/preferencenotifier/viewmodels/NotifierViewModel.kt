@@ -12,5 +12,9 @@ import com.preference.preferencenotifier.models.PreferenceValue
  * @since 1.0
  */
 class NotifierViewModel: ViewModel() {
+
+    /**
+     * The on update preference value which is link directly to the Preference notifier to preference value
+     */
     fun onUpdatePreferenceValue():LiveData<PreferenceValue> = PreferenceNotifier.updatedPreferenceValue
 }

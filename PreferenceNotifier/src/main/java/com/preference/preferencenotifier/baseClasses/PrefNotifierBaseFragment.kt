@@ -16,6 +16,9 @@ abstract class PrefNotifierBaseFragment : Fragment(), PreferenceStateListener
         subscribe()
     }
 
+    /**
+     * Subscribe to the notifier internal view model
+     */
     fun subscribe()
     {
         ViewModelProviders.of(this).get(NotifierViewModel::class.java)
