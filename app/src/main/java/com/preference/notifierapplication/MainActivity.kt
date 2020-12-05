@@ -12,7 +12,7 @@ class MainActivity : PrefNotifierBase() {
     private var container2:FrameLayout? = null
     private var activityTitle: TextView? = null
     private var prefButton: Button? = null
-    private var counter:Int = 0
+    private var counter:Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,6 @@ class MainActivity : PrefNotifierBase() {
         }
 
         prefButton?.setOnClickListener {
-            counter++
             notifier.setValue("test","value ${counter}")
         }
     }
