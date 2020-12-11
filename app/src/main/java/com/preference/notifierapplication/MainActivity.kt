@@ -19,7 +19,6 @@ class MainActivity : PrefNotifierBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        
         container1 = findViewById(R.id.container1)
         container2 = findViewById(R.id.container2)
         activityTitle = findViewById(R.id.activity_title)

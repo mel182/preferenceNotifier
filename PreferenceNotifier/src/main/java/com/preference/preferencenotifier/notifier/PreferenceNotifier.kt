@@ -17,10 +17,11 @@ import com.preference.preferencenotifier.models.PreferenceValue
  */
 object PreferenceNotifier {
 
+    const val MIGRATION_KEY = "PreferenceNotifier_migration"
+
     //region Local instance
     private var context:Context? = null
     private var notifyOnConfigChanged:Boolean = true
-    private var migrateCurrentSharedPreference:Boolean = false
     private lateinit var sharedPreference:SharedPreferences
 
     private var updatablePreferenceValue = MutableLiveData<PreferenceValue>()
@@ -50,9 +51,11 @@ object PreferenceNotifier {
      */
     fun migrate(existingSharedPreference: SharedPreferences): PreferenceNotifier
     {
-        if (!migrateCurrentSharedPreference)
+        if (this::sharedPreference.isInitialized)
         {
-            if (this::sharedPreference.isInitialized)
+            val isAlreadyMigrated = sharedPreference.getBoolean(MIGRATION_KEY,false)
+
+            if (!isAlreadyMigrated)
             {
                 val keys = existingSharedPreference.all
                 val editor = sharedPreference.edit()
@@ -79,7 +82,7 @@ object PreferenceNotifier {
                     }
                 }
 
-                migrateCurrentSharedPreference = true
+                setValue(MIGRATION_KEY,true)
             }
         }
 
@@ -173,6 +176,10 @@ object PreferenceNotifier {
             }
 
             editor.apply()
+
+            if (key == MIGRATION_KEY)
+                return
+
             updatablePreferenceValue.value = PreferenceValue(key,value)
 
             if (!this.notifyOnConfigChanged)
