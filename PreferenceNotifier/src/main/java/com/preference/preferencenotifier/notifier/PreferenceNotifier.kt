@@ -19,9 +19,11 @@ object PreferenceNotifier {
 
     //region Local instance
     private var context:Context? = null
+    private var notifyOnConfigChanged:Boolean = true
+    private var migrateCurrentSharedPreference:Boolean = false
     private lateinit var sharedPreference:SharedPreferences
 
-    private val updatablePreferenceValue = MutableLiveData<PreferenceValue>()
+    private var updatablePreferenceValue = MutableLiveData<PreferenceValue>()
     val updatedPreferenceValue: LiveData<PreferenceValue>
     get() = updatablePreferenceValue
     //endregion
@@ -48,37 +50,48 @@ object PreferenceNotifier {
      */
     fun migrate(existingSharedPreference: SharedPreferences): PreferenceNotifier
     {
-        if (this::sharedPreference.isInitialized)
+        if (!migrateCurrentSharedPreference)
         {
-            val keys = existingSharedPreference.all
-            val editor = sharedPreference.edit()
-            keys.forEach { pref ->
+            if (this::sharedPreference.isInitialized)
+            {
+                val keys = existingSharedPreference.all
+                val editor = sharedPreference.edit()
+                keys.forEach { pref ->
 
-                pref.value?.let { preferenceFound ->
+                    pref.value?.let { preferenceFound ->
 
-                    when(preferenceFound)
-                    {
-                        is String -> editor.putString(pref.key,pref.value as String).apply()
+                        when(preferenceFound)
+                        {
+                            is String -> editor.putString(pref.key,pref.value as String).apply()
 
-                        is Int -> editor.putInt(pref.key,pref.value as Int).apply()
+                            is Int -> editor.putInt(pref.key,pref.value as Int).apply()
 
-                        is Boolean -> editor.putBoolean(pref.key,pref.value as Boolean).apply()
+                            is Boolean -> editor.putBoolean(pref.key,pref.value as Boolean).apply()
 
-                        is Float -> editor.putFloat(pref.key,pref.value as Float).apply()
+                            is Float -> editor.putFloat(pref.key,pref.value as Float).apply()
 
-                        is Long -> editor.putLong(pref.key,pref.value as Long).apply()
+                            is Long -> editor.putLong(pref.key,pref.value as Long).apply()
 
-                        is HashSet<*> -> editor.putStringSet(pref.key,pref.value as HashSet<String>)
+                            is HashSet<*> -> editor.putStringSet(pref.key,pref.value as HashSet<String>)
 
-                        else -> {}
+                            else -> {}
+                        }
                     }
                 }
+
+                migrateCurrentSharedPreference = true
             }
         }
 
         return this
     }
     //endregion
+
+    fun notifyOnConfigurationChanged(notify:Boolean = true): PreferenceNotifier
+    {
+        this.notifyOnConfigChanged = notify
+        return this
+    }
 
     //region Get preference string value
     fun getString(key:String):String
@@ -151,36 +164,19 @@ object PreferenceNotifier {
             val editor = sharedPreference.edit()
             when(value)
             {
-                is String -> {
-
-                    editor.putString("test",null)
-
-                    editor.putString(key,value as String)
-                }
-
-                is Int -> {
-                    editor.putInt(key,value as Int)
-                }
-
-                is Boolean -> {
-                    editor.putBoolean(key,value as Boolean)
-                }
-
-                is Float -> {
-                    editor.putFloat(key,value as Float)
-                }
-
-                is Long -> {
-                    editor.putLong(key,value as Long)
-                }
-
-                is HashSet<*> -> {
-                    editor.putStringSet(key,value as HashSet<String>)
-                }
+                is String -> editor.putString(key,value as String)
+                is Int -> editor.putInt(key,value as Int)
+                is Boolean -> editor.putBoolean(key,value as Boolean)
+                is Float -> editor.putFloat(key,value as Float)
+                is Long -> editor.putLong(key,value as Long)
+                is HashSet<*> -> editor.putStringSet(key,value as HashSet<String>)
             }
 
             editor.apply()
             updatablePreferenceValue.value = PreferenceValue(key,value)
+
+            if (!this.notifyOnConfigChanged)
+                updatablePreferenceValue = MutableLiveData<PreferenceValue>()
         }
     }
     //endregion

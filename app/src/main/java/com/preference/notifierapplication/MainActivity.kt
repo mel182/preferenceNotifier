@@ -1,6 +1,7 @@
 package com.preference.notifierapplication
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -18,6 +19,7 @@ class MainActivity : PrefNotifierBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        
         container1 = findViewById(R.id.container1)
         container2 = findViewById(R.id.container2)
         activityTitle = findViewById(R.id.activity_title)
@@ -48,5 +50,7 @@ class MainActivity : PrefNotifierBase() {
     override fun onPreferenceChanged(key: String, value: Any?) {
         super.onPreferenceChanged(key, value)
         activityTitle?.text = "Activity key: ${key} value: ${value}"
+
+        Log.i("TAG","Activity key: ${key} value: ${value}")
     }
 }
