@@ -17,7 +17,8 @@ allprojects {
 **build.gradle (module):**
 ```bash
 dependencies {
-    **implementation 'com.github.mel182:preferenceNotifier:Tag'**
+    ...
+    implementation 'com.github.mel182:preferenceNotifier:Tag'
 }
 ```
 
