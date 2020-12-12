@@ -49,7 +49,7 @@ class MyApplication : Application()
        val sharedPreference =  getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
 
         PreferenceNotifier
-                .migrate(sharedPreference)**
+                .migrate(sharedPreference)
                 .init(applicationContext)
     }
 }
@@ -94,7 +94,7 @@ class MyFragment : PrefNotifierBaseFragment()
     //.......................
     
     override fun onPreferenceChanged(key: String, value: Any?) {
-        super.onPreferenceChanged(key, value)**
+        super.onPreferenceChanged(key, value)
         // Handle action when preference key changes
     }
 }
