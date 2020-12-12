@@ -1,6 +1,6 @@
 # Preference Notifier
 This is an Android libary which enabled all UI components to be notified when a shared preference value is updated and added. Although Android provided a native Android [PreferenceActivity](https://developer.android.com/reference/android/preference/PreferenceActivity), but it was deprecated in API level 29.
-The preference notifier is an easy to use library which can easily be migrated from your existent shared preference.
+The preference notifier is an easy to use library which can easily be migrated with your existent shared preference.
 
 ## Dependencies
 
