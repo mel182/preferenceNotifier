@@ -55,7 +55,7 @@ class MyApplication : Application()
 }
 ```
 
-By default, it does not notify when the app configuration changes (e.g. on screen orientation changes). In order to enable this feature:
+By default, it does not notify when with the last updated/added shared preference value on configuration changes (e.g. on screen orientation changes). In order to enable this feature:
 
 ```kotlin
 class MyApplication : Application()
