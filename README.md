@@ -1,6 +1,6 @@
-# Android Preference Notifier
-This is an Android libary which enabled all UI components to be notified when a shared preference value is updated and added. Although Android provided a native Android [PreferenceActivity](https://developer.android.com/reference/android/preference/PreferenceActivity), but is was deprecated in API level 29.
-The Android preference notifier is an easy to use library which can easily be migrated from your existent shared preference.
+# Preference Notifier
+This is an Android libary which enabled all UI components to be notified when a shared preference value is updated and added. Although Android provided a native Android [PreferenceActivity](https://developer.android.com/reference/android/preference/PreferenceActivity), but it was deprecated in API level 29.
+The preference notifier is an easy to use library which can easily be migrated from your existent shared preference.
 
 ## Dependencies
 
@@ -9,11 +9,13 @@ The Android preference notifier is an easy to use library which can easily be mi
 allprojects {
     repositories {
         ...
-        **maven { url 'https://jitpack.io' }**
+        maven { url 'https://jitpack.io' }
     }
 }
+```
 
 **build.gradle (module):**
+```bash
 dependencies {
     **implementation 'com.github.mel182:preferenceNotifier:Tag'**
 }
@@ -23,7 +25,7 @@ Make sure your support atleast Android API level 16.
 
 ## Usage
 
-```bash
+```kotlin
 class MyApplication : Application()
 {
     override fun onCreate() {
@@ -37,7 +39,7 @@ class MyApplication : Application()
 
 To migrate from an existing shared preference:
 
-```bash
+```kotlin
 class MyApplication : Application()
 {
     override fun onCreate() {
@@ -54,7 +56,7 @@ class MyApplication : Application()
 
 By default, it does not notify when the app configuration changes (e.g. on screen orientation changes). In order to enable this feature:
 
-```bash
+```kotlin
 class MyApplication : Application()
 {
     override fun onCreate() {
@@ -71,30 +73,29 @@ The library contains a base Activity and fragment which makes the migration proc
 
 For Activities:
 
-```bash
+```kotlin
 class MainActivity : PrefNotifierBase()
 {
     override fun onCreate(savedInstanceState: Bundle?) {
       .........
     }
 
-    **override fun onPreferenceChanged(key: String, value: Any?) {**
-        **super.onPreferenceChanged(key, value)**
+    override fun onPreferenceChanged(key: String, value: Any?) {
+        super.onPreferenceChanged(key, value)
         // Handle action when preference key changes
-    **}**
+    }
 
 }
 ```
 For Fragments:
 
-```bash
+```kotlin
 class MyFragment : PrefNotifierBaseFragment()
 {
-    **override fun onPreferenceChanged(key: String, value: Any?) {**
-        **super.onPreferenceChanged(key, value)**
+    override fun onPreferenceChanged(key: String, value: Any?) {
+        super.onPreferenceChanged(key, value)**
         // Handle action when preference key changes
-    **}**
-
+    }
 }
 ```
 
