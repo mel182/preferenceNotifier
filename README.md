@@ -111,7 +111,7 @@ class MyFragment : PrefNotifierBaseFragment()
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        notifier.setValue("key","pref value")
+        notifier.setValue("your_pref_key","your_pref_value")
     }
     
     //.......................
@@ -125,7 +125,7 @@ class MainActivity : PrefNotifierBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         notifier.setValue("key","pref value")
+         notifier.setValue("your_pref_key","your_pref_value")
     }
 
     //.......................
@@ -135,26 +135,26 @@ For retrieving values stored:
 
 **String:**
 ```kotlin
-notifier.getString("key") // Blank string as default
-notifier.getString("key","value") // In case a custom default value must be provided
+notifier.getString("your_pref_key") // Blank string as default
+notifier.getString("your_pref_key","your_pref_value") // In case a custom default value must be provided
 ```
 
 **Boolean:**
 ```kotlin
-notifier.getBoolean("key") // 'false' is providede as default
-notifier.getBoolean("key",true) // In case 'true' must be provided as default boolean value
+notifier.getBoolean("your_pref_key") // 'false' is providede as default
+notifier.getBoolean("your_pref_key",true) // In case 'true' must be provided as default boolean value
 ```
 
 **Float:**
 ```kotlin
-notifier.getFloat("key") // 0f is providede as default
-notifier.getBoolean("key",12f) // In case a custom default float value must be provided
+notifier.getFloat("your_pref_key") // 0f is providede as default
+notifier.getBoolean("your_pref_key",12f) // In case a custom default float value must be provided
 ```
 
 **Int:**
 ```kotlin
-notifier.getInt("key") // 0 is providede as default
-notifier.getInt("key",12) // In case a custom default int value must be provided
+notifier.getInt("your_pref_key") // 0 is providede as default
+notifier.getInt("your_pref_key",12) // In case a custom default int value must be provided
 ```
 
 ## Contributing
