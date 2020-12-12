@@ -31,8 +31,8 @@ class MyApplication : Application()
     override fun onCreate() {
         super.onCreate()
 
-        **PreferenceNotifier**
-                **.init(applicationContext)**
+        PreferenceNotifier
+             .init(applicationContext)
     }
 }
 ```
@@ -45,10 +45,10 @@ class MyApplication : Application()
     override fun onCreate() {
         super.onCreate()
 
-       **val sharedPreference =  getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)**
+       val sharedPreference =  getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
 
         PreferenceNotifier
-                **.migrate(sharedPreference)**
+                .migrate(sharedPreference)**
                 .init(applicationContext)
     }
 }
@@ -63,8 +63,8 @@ class MyApplication : Application()
         super.onCreate()
 
         PreferenceNotifier
-                    **.notifyOnConfigurationChanged(true)**
-                        .init(applicationContext)
+            .notifyOnConfigurationChanged(true)
+            .init(applicationContext)
     }
 }
 ```
@@ -76,9 +76,7 @@ For Activities:
 ```kotlin
 class MainActivity : PrefNotifierBase()
 {
-    override fun onCreate(savedInstanceState: Bundle?) {
-      .........
-    }
+    //.......................
 
     override fun onPreferenceChanged(key: String, value: Any?) {
         super.onPreferenceChanged(key, value)
@@ -92,6 +90,8 @@ For Fragments:
 ```kotlin
 class MyFragment : PrefNotifierBaseFragment()
 {
+    //.......................
+    
     override fun onPreferenceChanged(key: String, value: Any?) {
         super.onPreferenceChanged(key, value)**
         // Handle action when preference key changes
