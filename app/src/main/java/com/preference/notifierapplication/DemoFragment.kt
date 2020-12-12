@@ -30,6 +30,6 @@ class DemoFragment : PrefNotifierBaseFragment() {
 
     override fun onPreferenceChanged(key: String, value: Any?) {
         super.onPreferenceChanged(key, value)
-        title?.text = "Pref key: ${key} and value: ${value}"
+        title?.text = "Pref update\nkey: ${key}\nvalue: ${value}"
     }
 }
