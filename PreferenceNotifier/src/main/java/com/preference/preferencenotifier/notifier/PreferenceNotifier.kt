@@ -189,6 +189,11 @@ object PreferenceNotifier {
     //endregion
 
     //region is shared preference initialized
+    /**
+     * Determine if shared preference instance is initialized
+     * @return True if instance is initialized or false if not
+     * @since 1.0
+     */
     private fun isSharedPreferenceInitialized(): Boolean
     {
         return this::sharedPreference.isInitialized

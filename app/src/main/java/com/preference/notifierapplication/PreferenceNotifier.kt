@@ -8,6 +8,7 @@ class PreferenceNotifier : Application()
     override fun onCreate() {
         super.onCreate()
         PreferenceNotifier
+            .notifyOnConfigurationChanged(true)
                 .init(applicationContext)
     }
 }
