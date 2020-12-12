@@ -102,7 +102,7 @@ class MyFragment : PrefNotifierBaseFragment()
 
 The onPreferenceChanged function is totally optional meaning you can extends the PrefNotifierBase or PrefNotifierBaseFragment without defining it.
 
-To add or update a preference value use:
+To add or update a preference:
 
 ```kotlin
 class MyFragment : PrefNotifierBaseFragment()
