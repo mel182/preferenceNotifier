@@ -133,8 +133,29 @@ class MainActivity : PrefNotifierBase()
 ```
 For retrieving values stored:
 
+**String:**
+```kotlin
+notifier.getString("key") // Blank string as default
+notifier.getString("key","value") // In case a custom default value must be provided
+```
 
+**Boolean:**
+```kotlin
+notifier.getBoolean("key") // 'false' is providede as default
+notifier.getBoolean("key",true) // In case 'true' must be provided as default boolean value
+```
 
+**Float:**
+```kotlin
+notifier.getFloat("key") // 0f is providede as default
+notifier.getBoolean("key",12f) // In case a custom default float value must be provided
+```
+
+**Int:**
+```kotlin
+notifier.getInt("key") // 0 is providede as default
+notifier.getInt("key",12) // In case a custom default int value must be provided
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
