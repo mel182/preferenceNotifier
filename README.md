@@ -102,6 +102,42 @@ class MyFragment : PrefNotifierBaseFragment()
 
 The onPreferenceChanged function is totally optional meaning you can extends the PrefNotifierBase or PrefNotifierBaseFragment without defining it.
 
+To add or update a preference value use:
+
+```kotlin
+class MyFragment : PrefNotifierBaseFragment()
+{
+    //.......................
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        notifier.setValue("key","pref value")
+    }
+    
+    override fun onPreferenceChanged(key: String, value: Any?) {
+        super.onPreferenceChanged(key, value)
+        // Handle action when preference key changes
+    }
+}
+```
+
+```kotlin
+class MainActivity : PrefNotifierBase()
+{
+    //.......................
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+         notifier.setValue("key","pref value")
+    }
+
+    override fun onPreferenceChanged(key: String, value: Any?) {
+        super.onPreferenceChanged(key, value)
+        // Handle action when preference key changes
+    }
+}
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
