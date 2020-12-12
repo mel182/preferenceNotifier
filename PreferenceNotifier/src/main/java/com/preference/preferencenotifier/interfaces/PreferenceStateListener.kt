@@ -7,6 +7,5 @@ package com.preference.preferencenotifier.interfaces
  * @since 1.0
  */
 interface PreferenceStateListener {
-
     fun onPreferenceChanged(key:String,value:Any?) {}
 }

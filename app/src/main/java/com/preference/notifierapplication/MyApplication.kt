@@ -3,10 +3,13 @@ package com.preference.notifierapplication
 import android.app.Application
 import com.preference.preferencenotifier.notifier.PreferenceNotifier
 
-class PreferenceNotifier : Application()
+class MyApplication : Application()
 {
     override fun onCreate() {
         super.onCreate()
-        PreferenceNotifier.init(applicationContext)
+
+        PreferenceNotifier
+            .notifyOnConfigurationChanged(true)
+                .init(applicationContext)
     }
 }

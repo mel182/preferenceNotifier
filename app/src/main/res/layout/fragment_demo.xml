@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/demo_fragment_main_view"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@android:color/darker_gray"
     tools:context=".DemoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/fragment_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Fragment"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/fragment_tv"
         android:gravity="center"
         android:textColor="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
-</FrameLayout>
+</LinearLayout>

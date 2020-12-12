@@ -7,6 +7,11 @@ import com.preference.preferencenotifier.interfaces.PreferenceStateListener
 import com.preference.preferencenotifier.notifier.PreferenceNotifier
 import com.preference.preferencenotifier.viewmodels.NotifierViewModel
 
+/**
+ * This is the base fragment class that containing [PreferenceNotifier] properties
+ * @since 1.0
+ * @author Melchior Vrolijk
+ */
 abstract class PrefNotifierBaseFragment : Fragment(), PreferenceStateListener
 {
     var notifier: PreferenceNotifier = PreferenceNotifier
@@ -17,7 +22,9 @@ abstract class PrefNotifierBaseFragment : Fragment(), PreferenceStateListener
     }
 
     /**
-     * Subscribe to the notifier internal view model
+     * Subscribe to notifier view model for data updating
+     * @since 1.0
+     * @author Melchior Vrolijk
      */
     fun subscribe()
     {
