@@ -114,10 +114,7 @@ class MyFragment : PrefNotifierBaseFragment()
         notifier.setValue("key","pref value")
     }
     
-    override fun onPreferenceChanged(key: String, value: Any?) {
-        super.onPreferenceChanged(key, value)
-        // Handle action when preference key changes
-    }
+    //.......................
 }
 ```
 
@@ -131,10 +128,7 @@ class MainActivity : PrefNotifierBase()
          notifier.setValue("key","pref value")
     }
 
-    override fun onPreferenceChanged(key: String, value: Any?) {
-        super.onPreferenceChanged(key, value)
-        // Handle action when preference key changes
-    }
+    //.......................
 }
 ```
 
