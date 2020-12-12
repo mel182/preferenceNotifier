@@ -18,7 +18,7 @@ allprojects {
 ```bash
 dependencies {
     ...
-    implementation 'com.github.mel182:preferenceNotifier:0.0.2rc'
+    implementation 'com.github.mel182:preferenceNotifier:1.0'
 }
 ```
 
